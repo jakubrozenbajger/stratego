@@ -1,0 +1,45 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+  margin: 0 auto;
+}
+
+#chessboard {
+  padding: 0;
+  border: 2px solid #181818;
+}
+
+#chessboard tr td {
+  width: 60px;
+  height: 60px;
+}
+
+#chessboard tr:nth-child(2n) td:nth-child(2n+1) {
+  background: #cccccc;
+}
+
+#chessboard tr:nth-child(2n+1) td:nth-child(2n) {
+  background: #cccccc;
+}
+
+.dot {
+  height: 36pt;
+  width: 36pt;
+  border-radius: 100%;
+  border-color: transparent;
+  display: inline-block;
+}
+
+.red {
+  background-color: orangered;
+}
+
+.blue {
+  background-color: deepskyblue;
+}
+

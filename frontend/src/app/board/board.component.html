@@ -1,0 +1,13 @@
+<p>
+  board works!
+</p>
+
+<table id='chessboard'>
+  <tr *ngFor="let r of positions">
+    <td class="text-center" *ngFor="let d of positions" (click)="click(r, d)">
+      <i *ngIf="isPlaced(r,d)" [ngClass]="playerColor(r,d)" class="dot"></i>
+    </td>
+  </tr>
+</table>
+
+<button (click)="unlock()">Unlock</button>

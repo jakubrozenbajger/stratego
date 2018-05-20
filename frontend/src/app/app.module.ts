@@ -4,17 +4,22 @@ import {HttpClientModule} from '@angular/common/http';
 
 
 import {AppComponent} from './app.component';
+import {BoardComponent} from './board/board.component';
+import {WebsocketService} from "./websocket.service";
 
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    BoardComponent
   ],
   imports: [
     BrowserModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [
+    WebsocketService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {
