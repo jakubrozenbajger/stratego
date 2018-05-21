@@ -10,3 +10,6 @@ addSbtPlugin("io.gatling" % "gatling-sbt" % "2.2.2")
 
 // Scala formatting: "sbt scalafmt"
 addSbtPlugin("com.lucidchart" % "sbt-scalafmt" % "1.12")
+
+addSbtPlugin("org.lyranthe.sbt" % "partial-unification" % "1.1.0")
+

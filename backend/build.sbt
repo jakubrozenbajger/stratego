@@ -11,12 +11,23 @@ def gatlingVersion(scalaBinVer: String): String = scalaBinVer match {
   case "2.12" => "2.3.0"
 }
 
+javaOptions += "--add-modules=java.se.ee"
+
+scalacOptions += "-Ypartial-unification"
+
 libraryDependencies += guice
 libraryDependencies += "org.joda" % "joda-convert" % "1.9.2"
 libraryDependencies += "net.logstash.logback" % "logstash-logback-encoder" % "4.11"
 
 libraryDependencies += "com.netaporter" %% "scala-uri" % "0.4.16"
 libraryDependencies += "net.codingwell" %% "scala-guice" % "4.1.1"
+
+libraryDependencies ++= Seq(
+  "com.typesafe.akka" %% "akka-actor" % "2.5.12",
+  "com.typesafe.akka" %% "akka-testkit" % "2.5.12" % Test
+)
+
+libraryDependencies += "org.typelevel" %% "cats-core" % "1.0.1"
 
 libraryDependencies += "org.scalatestplus.play" %% "scalatestplus-play" % "3.1.2" % Test
 libraryDependencies += "io.gatling.highcharts" % "gatling-charts-highcharts" % gatlingVersion(scalaBinaryVersion.value) % Test
