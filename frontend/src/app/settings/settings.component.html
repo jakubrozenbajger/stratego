@@ -1,0 +1,19 @@
+<div>
+
+  <div>
+    <form [formGroup]="startForm">
+      <select title="Size" formControlName="boardSize">
+        <option *ngFor="let s of sizes" [value]="s" [selected]="selected">
+          {{s}}
+        </option>
+      </select>
+    </form>
+  </div>
+
+  <div>
+    <button class="btn btn-lg btn-primary" (click)="startGame()">
+      Start game
+    </button>
+  </div>
+</div>
+

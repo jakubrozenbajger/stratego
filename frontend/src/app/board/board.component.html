@@ -1,13 +1,14 @@
-<p>
-  board works!
-</p>
+<div>
+  <button class="btn btn-lg btn-danger" (click)="reset()">Reset game</button>
 
-<table id='chessboard'>
-  <tr *ngFor="let r of positions">
-    <td class="text-center" *ngFor="let d of positions" (click)="click(r, d)">
-      <i *ngIf="isPlaced(r,d)" [ngClass]="playerColor(r,d)" class="dot"></i>
-    </td>
-  </tr>
-</table>
+  <div *ngIf="positions">
+    <table id='chessboard'>
+      <tr *ngFor="let r of positions">
+        <td class="text-center" *ngFor="let d of positions" (click)="click(r, d)">
+          <i *ngIf="isPlaced(r,d)" [ngClass]="playerColor(r,d)" class="dot"></i>
+        </td>
+      </tr>
+    </table>
+  </div>
 
-<button (click)="unlock()">Unlock</button>
+</div>

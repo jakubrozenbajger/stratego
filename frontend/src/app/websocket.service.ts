@@ -1,37 +1,28 @@
 import {Injectable} from '@angular/core';
-import {Subject} from "rxjs/Subject";
 import {WebSocketSubject} from "rxjs/observable/dom/WebSocketSubject";
+import {Observable} from "rxjs/Observable";
 
 @Injectable()
 export class WebsocketService {
 
+  private _wsSubject: WebSocketSubject<any>;
+  private wsUrl = 'ws://localhost:9000/ws';
+
   constructor() {
-    this.connect('ws://localhost:9000/ws');
   }
 
-  private sub: Subject<any>;
-  public onMsg;
-
-  public connect(url): Subject<any> {
-    if (!this.sub) {
-      this.sub = this.create(url);
+  public get wsSubject(): WebSocketSubject<any> {
+    if (!this._wsSubject || this._wsSubject.closed) {
+      this._wsSubject = WebSocketSubject.create(this.wsUrl);
     }
-    return this.sub;
+    return this._wsSubject;
   }
 
-  private create(url): WebSocketSubject<any> {
-    const ws = WebSocketSubject.create(url);
-    ws.subscribe(
-      (msg) => {
-        this.onMsg(msg);
-      },
-      e => console.warn(e),
-      () => console.warn('Completed')
-    );
-    return ws;
+  get getUpdates$(): Observable<any> {
+    return this.wsSubject.asObservable();
   }
 
   public send(msg) {
-    return this.sub.next(msg);
+    return this.wsSubject.next(msg);
   }
 }

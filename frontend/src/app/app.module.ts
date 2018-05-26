@@ -6,19 +6,29 @@ import {HttpClientModule} from '@angular/common/http';
 import {AppComponent} from './app.component';
 import {BoardComponent} from './board/board.component';
 import {WebsocketService} from "./websocket.service";
+import {SettingsComponent} from './settings/settings.component';
+import {RouterModule} from "@angular/router";
+import Routes from "./routes";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import {GameService} from "./game.service";
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    BoardComponent
+    BoardComponent,
+    SettingsComponent,
   ],
   imports: [
     BrowserModule,
-    HttpClientModule
+    HttpClientModule,
+    RouterModule.forRoot(Routes, {}),
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [
-    WebsocketService
+    WebsocketService,
+    GameService,
   ],
   bootstrap: [AppComponent]
 })
