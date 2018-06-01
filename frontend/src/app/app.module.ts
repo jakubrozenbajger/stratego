@@ -8,7 +8,7 @@ import {BoardComponent} from './board/board.component';
 import {WebsocketService} from "./websocket.service";
 import {SettingsComponent} from './settings/settings.component';
 import {RouterModule} from "@angular/router";
-import Routes from "./routes";
+import {routes} from "./routes";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {GameService} from "./game.service";
 
@@ -22,7 +22,7 @@ import {GameService} from "./game.service";
   imports: [
     BrowserModule,
     HttpClientModule,
-    RouterModule.forRoot(Routes, {}),
+    RouterModule.forRoot(routes),
     FormsModule,
     ReactiveFormsModule
   ],
