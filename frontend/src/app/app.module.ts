@@ -11,6 +11,7 @@ import {RouterModule} from "@angular/router";
 import {routes} from "./routes";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {GameService} from "./game.service";
+import { AiSettingsComponent } from './board/ai-settings/ai-settings.component';
 
 
 @NgModule({
@@ -18,6 +19,7 @@ import {GameService} from "./game.service";
     AppComponent,
     BoardComponent,
     SettingsComponent,
+    AiSettingsComponent,
   ],
   imports: [
     BrowserModule,

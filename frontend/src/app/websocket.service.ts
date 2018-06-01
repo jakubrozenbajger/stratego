@@ -23,6 +23,7 @@ export class WebsocketService {
   }
 
   public send(msg) {
+    console.log(msg);
     return this.wsSubject.next(msg);
   }
 }

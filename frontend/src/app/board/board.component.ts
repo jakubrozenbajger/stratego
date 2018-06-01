@@ -67,7 +67,13 @@ export class BoardComponent implements OnInit {
   click(r, c) {
     console.log(r + " " + c);
     if (!this.lock && !this.isPlaced(r, c)) {
-      this.ws.send(JSON.stringify({msg: "nextMove", position: {row: r, column: c}, board: {state: this.state}}));
+      this.ws.send(JSON.stringify({
+        msg: "nextMove",
+        position: {row: r, column: c},
+        board: {state: this.state},
+        aiSettings: this.gameService.getAiSettings()
+      }));
+
       this.lock = true;
       this.state[r][c] = 1;  // Math.abs(this.state[r][c]) - 1;
     }

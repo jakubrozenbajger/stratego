@@ -1,0 +1,16 @@
+<div class="m-5">
+  <div>
+    <form [formGroup]="aiSettings">
+      <select class="form-control" title="Size" formControlName="depth" [(ngModel)]="depth">
+        <option *ngFor="let d of depths" [value]="d">
+          {{d}}
+        </option>
+      </select>
+      <select class="form-control" title="Size" formControlName="type" [(ngModel)]="type">
+        <option *ngFor="let t of types" [value]="t">
+          {{t}}
+        </option>
+      </select>
+    </form>
+  </div>
+</div>

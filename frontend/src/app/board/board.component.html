@@ -1,29 +1,31 @@
 <div>
-  <div>
-    <button class="btn btn-lg btn-danger" (click)="reset()">Reset game</button>
-    <div *ngIf="debug()">
-      {{debug()}}
-    </div>
-    <div *ngFor="let p of players" style="width: 200px">
-      <div class="row">
-        <div class="col-6">
-          <i [ngClass]="getColor(p.id)" class="dot"></i>
-        </div>
-        <div class="col-6 text-center h2">
-          {{p.points}}
-        </div>
+  <button class="btn btn-lg btn-danger" (click)="reset()">Reset game</button>
+  <div *ngIf="debug()">
+    {{debug()}}
+  </div>
+
+  <div *ngFor="let p of players" style="width: 200px">
+    <div class="row">
+      <div class="col-6">
+        <i [ngClass]="getColor(p.id)" class="dot"></i>
+      </div>
+      <div class="col-6 text-center h2">
+        {{p.points}}
       </div>
     </div>
   </div>
+</div>
 
-  <div *ngIf="positions">
-    <table id='chessboard'>
-      <tr *ngFor="let r of positions">
-        <td class="text-center" *ngFor="let d of positions" (click)="click(r, d)">
-          <i *ngIf="isPlaced(r,d)" [ngClass]="playerColor(r,d)" class="dot"></i>
-        </td>
-      </tr>
-    </table>
-  </div>
+<div *ngIf="positions">
+  <table id='chessboard'>
+    <tr *ngFor="let r of positions">
+      <td class="text-center" *ngFor="let d of positions" (click)="click(r, d)">
+        <i *ngIf="isPlaced(r,d)" [ngClass]="playerColor(r,d)" class="dot"></i>
+      </td>
+    </tr>
+  </table>
+</div>
 
+<div class="container">
+  <app-ai-settings></app-ai-settings>
 </div>

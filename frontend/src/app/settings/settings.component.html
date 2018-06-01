@@ -1,17 +1,21 @@
-<div>
-
-  <div>
-    <form [formGroup]="startForm">
-      <select title="Size" formControlName="boardSize">
-        <option *ngFor="let s of sizes" [value]="s" [selected]="selected">
-          {{s}}
-        </option>
-      </select>
-    </form>
+<div class="m-3">
+  <div class="m-3 row">
+    <div class="col-2 h-100 text-center p-0 pt-1 text-justify">
+      Board size:
+    </div>
+    <div class="col-10 p-0">
+      <form [formGroup]="startForm">
+        <select class="custom-select" title="Size" formControlName="boardSize">
+          <option *ngFor="let s of sizes" [value]="s">
+            {{s}}
+          </option>
+        </select>
+      </form>
+    </div>
   </div>
 
-  <div>
-    <button class="btn btn-lg btn-primary" (click)="startGame()">
+  <div class="m-3">
+    <button class="btn btn-lg btn-primary w-100" (click)="startGame()">
       Start game
     </button>
   </div>
