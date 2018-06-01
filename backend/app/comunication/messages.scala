@@ -1,7 +1,7 @@
 package comunication
 
 import engine.BoardPosition._
-import engine.{Board, BoardPosition}
+import engine.{AiSettings, Board, BoardPosition}
 import play.api.libs.json._
 import play.api.mvc.WebSocket.MessageFlowTransformer
 
@@ -50,7 +50,7 @@ object Messages {
     implicit val format = Json.format[Start]
   }
 
-  case class NextMove(position: BoardPosition, board: Board) extends InEvent
+  case class NextMove(position: BoardPosition, board: Board, aiSettings: AiSettings) extends InEvent
 
   case class IndividualInfo(generation: Int, image: String, msg: String = IndividualInfo.identifier, population: Int, info: String)
     extends OutEvent

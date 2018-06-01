@@ -2,7 +2,7 @@ package comunication
 
 import akka.actor.{Actor, ActorRef, PoisonPill}
 import comunication.Messages._
-import engine.player.{AiPlayer, Human, Player}
+import engine.player.{Human, Player, PlayerFactory}
 import engine.{Board, DefaultCalculator}
 import play.api.Logger
 
@@ -25,8 +25,7 @@ class WsActor(output: ActorRef) extends Actor {
       doMove(human, board)
 
       if (board.canDoMove) {
-        //        val ai = RandomPlayer(aiId, board)
-        val ai = new AiPlayer(aiId, board)
+        val ai = PlayerFactory.create(aiId, nm.aiSettings)(board)
         doMove(ai, board)
       }
 

@@ -4,7 +4,6 @@ import play.api.libs.json.Json
 import utils.implicits._
 
 import scala.collection.mutable
-import scala.language.postfixOps
 import scala.util.Random
 
 case class Board(state: Array[Array[Int]]) {
