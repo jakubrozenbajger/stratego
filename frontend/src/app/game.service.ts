@@ -1,8 +1,10 @@
 import {Injectable} from '@angular/core';
-import {AiSettings, AIType, Player, Points} from "./model";
+import {AiSettings, AIType, MovesStrategy, Player, Points, PositionStrategy} from "./model";
 
 const DEFAULT_DEPTH = 3;
 const DEFAULT_AI_TYPE = AIType.MIN_MAX;
+const DEFAULT_MOVE_STRATEGY = MovesStrategy.NORMAL;
+const DEFAULT_POSITION_STRATEGY = PositionStrategy.NONE;
 
 @Injectable()
 export class GameService {
@@ -13,6 +15,8 @@ export class GameService {
   // ai
   depth: number = DEFAULT_DEPTH;
   type: string = DEFAULT_AI_TYPE;
+  moveStrategy: string = DEFAULT_MOVE_STRATEGY;
+  positionStrategy: string = DEFAULT_POSITION_STRATEGY;
 
 
   constructor() {
@@ -34,7 +38,9 @@ export class GameService {
   getAiSettings(): AiSettings {
     return {
       depth: +this.depth,
-      aiType: this.type
+      aiType: this.type,
+      moveStrategy: this.moveStrategy,
+      positionStrategy: this.positionStrategy,
     };
   }
 

@@ -22,9 +22,23 @@ export interface Player {
 export const AIType = {
   MIN_MAX: 'MinMax',
   ALPHA_BETA: 'AlphaBeta',
+  RANDOM: 'Random',
+};
+
+export const MovesStrategy = {
+  RANDOM: 'Random',
+  NORMAL: 'Normal',
+}
+;
+export const PositionStrategy = {
+  NONE: 'None',
+  BORDER: 'Border',
+  MIDDLE: 'Middle',
 };
 
 export interface AiSettings {
   depth: number;
   aiType: string;
+  moveStrategy: string;
+  positionStrategy: string;
 }

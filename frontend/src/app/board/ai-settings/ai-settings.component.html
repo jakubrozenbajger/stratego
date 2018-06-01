@@ -1,16 +1,52 @@
 <div class="m-5">
   <div>
     <form [formGroup]="aiSettings">
-      <select class="form-control" title="Size" formControlName="depth" [(ngModel)]="depth">
-        <option *ngFor="let d of depths" [value]="d">
-          {{d}}
-        </option>
-      </select>
-      <select class="form-control" title="Size" formControlName="type" [(ngModel)]="type">
-        <option *ngFor="let t of types" [value]="t">
-          {{t}}
-        </option>
-      </select>
+
+      <div class="row">
+        <div class="col-2">
+          Depth
+        </div>
+        <select class="form-control col-10" title="Depth" formControlName="depth" [(ngModel)]="depth">
+          <option *ngFor="let d of depths" [value]="d">
+            {{d}}
+          </option>
+        </select>
+      </div>
+
+      <div class="row">
+        <div class="col-2">
+          Type
+        </div>
+        <select class="form-control col-10" title="Type" formControlName="type" [(ngModel)]="type">
+          <option *ngFor="let t of types" [value]="t">
+            {{t}}
+          </option>
+        </select>
+      </div>
+
+      <div class="row">
+        <div class="col-2">
+          Moves
+        </div>
+        <select class="form-control col-10" title="Moves" formControlName="moveStrategy" [(ngModel)]="moveStrategy">
+          <option *ngFor="let m of moves" [value]="m">
+            {{m}}
+          </option>
+        </select>
+      </div>
+
+      <div class="row">
+        <div class="col-2">
+          Preferred Position
+        </div>
+        <select class="form-control col-10" title="Preferred Position" formControlName="positionStrategy"
+                [(ngModel)]="positionStrategy">
+          <option *ngFor="let p of positions" [value]="p">
+            {{p}}
+          </option>
+        </select>
+      </div>
+
     </form>
   </div>
 </div>
