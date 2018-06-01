@@ -1,6 +1,6 @@
 package controllers
 
-import actors.{InEvent, OutEvent, WsActor}
+import comunication.{InEvent, OutEvent, WsActor}
 import akka.actor.{ActorSystem, Props}
 import akka.stream.Materializer
 import javax.inject.{Inject, Singleton}
@@ -13,7 +13,7 @@ class WsController @Inject()(cc: ControllerComponents)
                              mat: Materializer
                             ) extends AbstractController(cc) {
 
-  import actors.Messages._
+  import comunication.Messages._
 
   def socket: WebSocket = WebSocket.accept[InEvent, OutEvent] {
     _ => ActorFlow.actorRef(output => Props(new WsActor(output)))

@@ -1,5 +1,6 @@
-package actors
+package comunication
 
+import engine.BoardPosition._
 import engine.{Board, BoardPosition}
 import play.api.libs.json._
 import play.api.mvc.WebSocket.MessageFlowTransformer
@@ -25,7 +26,7 @@ object Messages {
         case st: Status => Status.format.writes(st)
         case nm: NewMove => NewMove.format.writes(nm)
         case p: Points => Points.format.writes(p)
-        case x => sys.error("type not found " + o)
+        case _ => sys.error(s"Type not found: $o")
       }
     }
   }
@@ -34,11 +35,14 @@ object Messages {
     override def reads(json: JsValue): JsResult[InEvent] = {
       val msgType = (json \ "msg").as[String]
       msgType match {
+        case "close" => JsSuccess(Close())
         case "start" => Start.format.reads(json)
         case "nextMove" => NextMove.format.reads(json)
       }
     }
   }
+
+  case class Close() extends InEvent
 
   case class Start(cycles: Int) extends InEvent
 
@@ -46,11 +50,7 @@ object Messages {
     implicit val format = Json.format[Start]
   }
 
-  case class NextMove(position: BoardPosition, state: Array[Array[Int]]) extends InEvent
-
-  object NextMove {
-    implicit val format = Json.format[NextMove]
-  }
+  case class NextMove(position: BoardPosition, board: Board) extends InEvent
 
   case class IndividualInfo(generation: Int, image: String, msg: String = IndividualInfo.identifier, population: Int, info: String)
     extends OutEvent
@@ -65,12 +65,21 @@ object Messages {
 
   case class NewMove(board: Board) extends OutEvent
 
-  case class Points(count: Int) extends OutEvent
+  case class Points(count: Int, id: Int) extends OutEvent
 
   import play.api.libs.json._
 
+  object NextMove {
+    implicit val format = Json.format[NextMove]
+  }
+
   object Points {
     implicit val format = Json.format[Points]
+
+    def apply(count: Int, id: Int): Points = new Points(count, id)
+
+    def apply(count: Option[Int], id: Int): Points = new Points(count.getOrElse(0), id)
+
   }
 
   object NewMove {
