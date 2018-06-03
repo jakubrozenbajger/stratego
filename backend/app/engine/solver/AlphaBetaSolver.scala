@@ -6,7 +6,7 @@ import engine.{Board, BoardPosition}
 
 object AlphaBetaSolver extends AiSolver {
 
-  def solve(board: Board, player: AiPlayer): BoardPosition = {
+  override def solve(board: Board, player: AiPlayer): BoardPosition = {
 
     var bestBp: Option[BoardPosition] = None
 

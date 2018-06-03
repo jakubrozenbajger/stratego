@@ -2,8 +2,8 @@ package comunication
 
 import akka.actor.{Actor, ActorRef, PoisonPill}
 import comunication.Messages._
-import engine.player.{Human, Player, PlayerFactory}
-import engine.{Board, DefaultCalculator}
+import engine.player.{Human, Player}
+import engine.{Board, DefaultCalculator, AiFactory}
 import play.api.Logger
 
 class WsActor(output: ActorRef) extends Actor {
@@ -25,7 +25,7 @@ class WsActor(output: ActorRef) extends Actor {
       doMove(human, board)
 
       if (board.canDoMove) {
-        val ai = PlayerFactory.create(aiId, nm.aiSettings)(board)
+        val ai = AiFactory.create(aiId, nm.aiSettings)
         doMove(ai, board)
       }
 
@@ -38,8 +38,8 @@ class WsActor(output: ActorRef) extends Actor {
     case _ => println("Received unhandled msg")
   }
 
-  def doMove(p: Player, board: Board) = {
-    val pos = p.move
+  private def doMove(p: Player, board: Board) = {
+    val pos = p.move(board)
     val points = DefaultCalculator.calculatePoints(board, pos)
     board.place(pos, p.id)
     output ! Points(points, p.id)

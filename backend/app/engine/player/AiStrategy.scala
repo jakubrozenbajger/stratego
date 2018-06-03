@@ -12,7 +12,7 @@ object CalcStrategy {
     override def combine(x: CalcStrategy, y: CalcStrategy): CalcStrategy = {
       new CalcStrategy {
         override def calc: (Board, BoardPosition) => Option[Int] =
-          (b, bp) => x.calc(b, bp).flatMap(i => y.calc(b, bp).map(_ + i))
+          (b, bp) => Some(x.calc(b, bp).getOrElse(0) + y.calc(b, bp).getOrElse(0))
       }
     }
 
@@ -39,11 +39,6 @@ object MiddleGratificationCalc extends CalcStrategy {
 object EmptyCalc extends CalcStrategy {
   def calc: (Board, BoardPosition) => Option[Int] = (_, _) => None
 }
-
-//
-//object NotLastButOneGratificationCalc extends CalcStrategy {
-//  def calc: (Board, BoardPosition) => Option[Int] = NotLastButOneCalculator.calculatePoints
-//}
 
 
 sealed trait MovesChooseStrategy {

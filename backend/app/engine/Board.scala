@@ -50,6 +50,12 @@ case class Board(state: Array[Array[Int]]) {
 }
 
 object Board {
+  def apply(size: Int): Board = new Board(emptyArray(size))
+
+  private def emptyArray(size: Int) = {
+    Array.fill[Array[Int]](size)(Array.fill[Int](size)(0))
+  }
+
   implicit val boardWrites = Json.format[Board]
 }
 

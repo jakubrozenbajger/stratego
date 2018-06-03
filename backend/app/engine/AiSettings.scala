@@ -1,7 +1,7 @@
 package engine
 
 import engine.player._
-import engine.solver.{AiSolver, AlphaBetaSolver, MinMaxSolver}
+import engine.solver.{AiSolver, AlphaBetaSolver, MinMaxSolver, RandomSolver}
 import play.api.libs.functional.syntax._
 import play.api.libs.json.{Reads, _}
 
@@ -27,15 +27,16 @@ object AiSettings {
       (__ \ "aiType").read[String].map({
         case "MinMax" => MinMaxSolver
         case "AlphaBeta" => AlphaBetaSolver
+        case "Random" => RandomSolver
       }) and
       (__ \ "moveStrategy").read[String].map({
         case "Random" => RandomMovesChooseStrategy
-        case _ => SimpleMovesChooseStrategy
+        case "Normal" => SimpleMovesChooseStrategy
       }) and
       (__ \ "positionStrategy").read[String].map({
         case "Middle" => MiddleGratificationCalc
         case "Border" => BordersGratificationCalc
-        case "None" => BordersGratificationCalc
+        case "None" => EmptyCalc
       })
     ) (AiSettings.apply _)
 
