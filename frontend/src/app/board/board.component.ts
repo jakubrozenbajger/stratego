@@ -18,6 +18,8 @@ export class BoardComponent implements OnInit {
   state: number[][];
   lock: boolean = false;
 
+  showAdvanced: boolean = false;
+
   constructor(private ws: WebsocketService, private router: Router, private gameService: GameService) {
     console.log("Start " + gameService.boardSize);
     this.prepareWsService();
@@ -29,6 +31,10 @@ export class BoardComponent implements OnInit {
 
   debug() {
     return JSON.stringify({state: this.state, lock: this.lock});
+  }
+
+  toggleAdvanced() {
+    this.showAdvanced = !this.showAdvanced;
   }
 
   get players() {

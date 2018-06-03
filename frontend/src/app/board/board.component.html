@@ -1,7 +1,7 @@
 <div>
-  <button class="btn btn-lg btn-danger" (click)="reset()">Reset game</button>
-  <div *ngIf="debug()">
-    {{debug()}}
+  <div class="w-100 top-buttons">
+    <button class="btn btn-lg btn-danger float-left" (click)="reset()">Reset game</button>
+    <button class="btn btn-lg btn-dark float-right" (click)="toggleAdvanced()">Advanced</button>
   </div>
 
   <div *ngFor="let p of players" style="width: 200px">
@@ -26,6 +26,9 @@
   </table>
 </div>
 
-<div class="container">
+<div *ngIf="showAdvanced" class="container">
+  <div *ngIf="debug()">
+    {{debug()}}
+  </div>
   <app-ai-settings></app-ai-settings>
 </div>
