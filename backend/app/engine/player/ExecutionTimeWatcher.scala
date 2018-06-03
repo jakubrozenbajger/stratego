@@ -16,9 +16,9 @@ case class ExecutionTimeWatcher(aiPlayer: Player) extends Player {
     val start = System.currentTimeMillis()
     val result = aiPlayer.move(board)
     val stop = System.currentTimeMillis()
-    times.append(start - stop)
+    times.append(stop - start)
     result
   }
 
-  override def toString: String = s"${super.toString} wrapped by TimerWatcher"
+  override def toString: String = s"${aiPlayer.toString} (with TW)"
 }

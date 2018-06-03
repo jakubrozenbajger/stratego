@@ -27,6 +27,7 @@ export const AIType = {
 
 export const MovesStrategy = {
   RANDOM: 'Random',
+  CENTER_LAST: 'CenterLast',
   NORMAL: 'Normal',
 }
 ;

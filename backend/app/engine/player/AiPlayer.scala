@@ -13,5 +13,5 @@ case class AiPlayer(
 
   override def move(board: Board): BoardPosition = aiSolver.solve(board, this)
 
-  override def toString: String = s"AiPlayer(id=$id, depth=$depth, solver=${aiSolver.name})"
+  override def toString: String = s"AiPlayer(id=$id, depth=$depth, solver=${aiSolver.name}, calc=${calcStrategy.toString}, move=${movesChooseStrategy.getClass.getSimpleName})"
 }

@@ -31,6 +31,7 @@ object AiSettings {
       }) and
       (__ \ "moveStrategy").read[String].map({
         case "Random" => RandomMovesChooseStrategy
+        case "CenterLast" => CenterLastMovesChooseStrategy
         case "Normal" => SimpleMovesChooseStrategy
       }) and
       (__ \ "positionStrategy").read[String].map({

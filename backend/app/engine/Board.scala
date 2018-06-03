@@ -4,7 +4,6 @@ import play.api.libs.json.Json
 import utils.implicits._
 
 import scala.collection.mutable
-import scala.util.Random
 
 case class Board(state: Array[Array[Int]]) {
 
@@ -44,8 +43,6 @@ case class Board(state: Array[Array[Int]]) {
   }.to[mutable.LinkedHashSet]
 
   def remaining: List[BoardPosition] = availableMoves.toList
-
-  def shuffledRemaining: mutable.MutableList[BoardPosition] = Random.shuffle(mutable.MutableList() ++ remaining)
 
 }
 

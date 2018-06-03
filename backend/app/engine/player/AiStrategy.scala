@@ -3,7 +3,9 @@ package engine.player
 import cats.kernel.Monoid
 import engine.{Board, BoardPosition, DefaultCalculator}
 
-sealed trait CalcStrategy {
+import scala.util.Random
+
+trait CalcStrategy {
   def calc: (Board, BoardPosition) => Option[Int]
 }
 
@@ -50,6 +52,9 @@ object SimpleMovesChooseStrategy extends MovesChooseStrategy {
 }
 
 object RandomMovesChooseStrategy extends MovesChooseStrategy {
-  override def getMoves: Board => Seq[BoardPosition] = _.shuffledRemaining
+  override def getMoves: Board => Seq[BoardPosition] = b => Random.shuffle(b.remaining)
 }
 
+object CenterLastMovesChooseStrategy extends MovesChooseStrategy {
+  override def getMoves: Board => Seq[BoardPosition] = _.remaining.sortBy(bp => -math.abs(bp.column - bp.row))
+}
